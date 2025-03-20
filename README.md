@@ -1,10 +1,10 @@
 # BingWallpaperPicture
-##ubuntu:
-###crontab:
+## ubuntu
+### crontab
 ```
     00 08 * * * gui-cron python2 /home/nio/bing-desktop-wallpaper-changer/main.py
 ```
-###gui-cron:
+### gui-cron:
 cat /usr/local/bin/gui-cron
 ```
 #!/bin/sh
@@ -35,7 +35,7 @@ echo "DISPLAY= ${DISPLAY} "  >> /home/nio/test.log 2>&1
 vardate=$(date +%c)
 echo "${vardate}: run run_bingwallpaper succeed!" >> /home/nio/test.log 2>&1
 ```
-###wallpater python    
+### wallpater python    
 /home/nio/bing-desktop-wallpaper-changer/main.py
 cat /home/nio/bing-desktop-wallpaper-changer/main.py
 ```
@@ -469,5 +469,5 @@ if __name__ == '__main__':
     main()
 ```
 
-###20250320 update
+### 20250320 update
     add 202209-202503

@@ -39,7 +39,6 @@ echo "${vardate}: run run_bingwallpaper succeed!" >> /home/nio/test.log 2>&1
 /home/nio/bing-desktop-wallpaper-changer/main.py
 cat /home/nio/bing-desktop-wallpaper-changer/main.py
 ```
-<div style="display:none">
 # -*- coding: utf-8 -*-
 
 import locale

@@ -1,15 +1,13 @@
 # BingWallpaperPicture
-##ubuntu:
-###crontab:
+## ubuntu
+### crontab
 ```
     00 08 * * * gui-cron python2 /home/nio/bing-desktop-wallpaper-changer/main.py
 ```
-###gui-cron:
+### gui-cron:
 cat /usr/local/bin/gui-cron
 ```
-<div style="display:none">
 #!/bin/sh
-</div>
 
 [ "$#" -lt 1 ] && echo "Usage: $0 program options" && exit 1
 vardate=$(date +%c)
@@ -28,39 +26,30 @@ echo "DBUS_SESSION_BUS_ADDRESS=$DBUS_SESSION_BUS_ADDRESS"
 export DISPLAY=$(cat /proc/"$i"/environ | grep -z ^DISPLAY= | sed 's/DISPLAY=//')
 echo "DISPLAY=$DISPLAY"
 done
-<div style="display:none">
 #export DBUS_SESSION_BUS_ADDRESS=$(cat /proc/"$env_reference_process"/environ | grep -z ^DBUS_SESSION_BUS_ADDRESS= | sed 's/DBUS_SESSION_BUS_ADDRESS=//')
 #export DISPLAY=$(cat /proc/"$env_reference_process"/environ | grep -z ^DISPLAY= | sed 's/DISPLAY=//')
 "$program" "$@"
-</div>
 echo "DBUS_SESSION_BUS_ADDRESS= ${DBUS_SESSION_BUS_ADDRESS} "  >> /home/nio/test.log 2>&1
 echo "DISPLAY= ${DISPLAY} "  >> /home/nio/test.log 2>&1
 
 vardate=$(date +%c)
 echo "${vardate}: run run_bingwallpaper succeed!" >> /home/nio/test.log 2>&1
 ```
-###wallpater python    
+### wallpater python    
 /home/nio/bing-desktop-wallpaper-changer/main.py
 cat /home/nio/bing-desktop-wallpaper-changer/main.py
 ```
-<div style="display:none">
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-</div>
 
 import locale
 import os
 import re
 import sys
 
-<div style="display:none">
 # setup done to /home/nio/bing-desktop-wallpaper-changer by BDWC Installer v3.3.1-release
-</div>
 path_to_Bing_Wallpapers="/home/nio/bing-desktop-wallpaper-changer"
 
-<div style="display:none">
 # wait computer internet connection
-</div>
 os.system("sleep 10")
 
 try:  # try python 3 import
@@ -143,24 +132,18 @@ BING_MARKETS = [u'ar-XA',
                 u'zh-TW']
 
 config_file_skeleton ="""[market]
-<div style="display:none">
 # If you want to override the current Bing market dectection,
 # set your preferred market here. For a list of markets, see
 # https://msdn.microsoft.com/en-us/library/dd251064.aspx
-</div>
 area =
 [directory]
-<div style="display:none">
 # Download directory path. By default images are saved to
 # /home/[user]/[Pictures]/BingWallpapers/
-</div>
 dir_path =
-<div style="display:none">
 # Limit the size of the downloaded image directory
 # Size should be specified in bytes. The minimum
 # limit is the size of 1 image (whatever size that image is)
 # Set to negative value for unlimit. Default value is 100MiB
-</div>
 dir_max_size =
 """
 
@@ -251,9 +234,7 @@ def get_market():
 
 
 def get_download_path():
-<div style="display:none">
     # By default images are saved to '/home/[user]/[Pictures]/BingWallpapers/'
-</div>
     default_path = check_output("xdg-user-dir PICTURES", shell=True).strip().decode("utf-8") + "/BingWallpapers"
 
     try:
@@ -285,12 +266,10 @@ def get_bing_xml():
 
     :return: URL with the Bing Photo of the day.
     """
-<div style="display:none">
     # idx = Number days previous the present day.
     # 0 means today, 1 means yesterday
     # n = Number of images previous the day given by idx
     # mkt = Bing Market Area, see get_valid_bing_markets.
-</div>
     market = get_market()
     return "https://www.bing.com/HPImageArchive.aspx?format=xml&idx=0&n=1&mkt=%s" % market
 
@@ -349,9 +328,7 @@ def get_screen_resolution_str():
             sizew = default_w
             sizeh = default_h
     return 'UHD'
-<div style="display:none">
     #return r'%sx%s' % (sizew, sizeh)
-</div>
 
 
 def get_image_metadata():
@@ -365,9 +342,7 @@ def get_image_metadata():
 
     bing_xml = ET.parse(page).getroot()
 
-<div style="display:none">
     # For extracting complete URL of the image
-</div>
     images = bing_xml.findall('image')
     return images[0]
 
@@ -380,10 +355,8 @@ def get_image_url(metadata):
     :return: URL with Bing Wallpaper image.
     """
     base_image = metadata.find("url").text
-<div style="display:none">
     # Replace image resolution with the correct resolution
     # from your main monitor
-</div>
     screen_size = get_screen_resolution_str()
     correct_resolution_image = re.sub(r'\d+x\d+', screen_size, base_image)
     return "https://www.bing.com" + correct_resolution_image
@@ -398,8 +371,6 @@ def init_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
-
-<div style="display:none">
 # def p3_dirscan(path):
 #     files = list()
 #     size = 0
@@ -408,7 +379,6 @@ def init_dir(path):
 #             files.append(entry)
 #             size = size + entry.stat.st_size;
 #     return files, size
-</div>
 
 def p2_dirscan(path):
     files = list()
@@ -498,5 +468,5 @@ if __name__ == '__main__':
     main()
 ```
 
-###20250320 update
+### 20250320 update
     add 202209-202503
